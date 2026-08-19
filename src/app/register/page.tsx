@@ -21,8 +21,9 @@ const registrationSchema = z.object({
 export default function RegisterPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const { register, handleSubmit, watch, trigger, formState: { errors } } = useForm<any>({
+  const { register, handleSubmit, watch, trigger, setValue, formState: { errors } } = useForm<any>({
     resolver: zodResolver(registrationSchema),
     mode: "onBlur",
     defaultValues: { teamSize: 1, members: [{ name: "", email: "", phone: "" }] }
@@ -30,11 +31,23 @@ export default function RegisterPage() {
 
   const teamSize = watch("teamSize") || 1;
   const numMembers = Math.min(Math.max(1, teamSize), 4);
+  const selectedTrack = watch("track");
 
   const STEPS = [
     { title: "Squad Designation", fields: ["teamName", "teamSize"] },
     { title: "Member Profiles", fields: Array.from({ length: numMembers }).flatMap((_, i) => [`members.${i}.name`, `members.${i}.email`, `members.${i}.phone`]) },
     { title: "Expedition Track", fields: ["track"] }
+  ];
+
+  const TRACK_OPTIONS = [
+    { value: "ai", label: "Artificial Intelligence" },
+    { value: "cyber", label: "Cybersecurity" },
+    { value: "web3", label: "Web3 & DePIN" },
+    { value: "fintech", label: "FinTech" },
+    { value: "health", label: "Health-Tech" },
+    { value: "climate", label: "Climate-Tech" },
+    { value: "edtech", label: "Ed-Tech" },
+    { value: "open", label: "Open Innovation" }
   ];
 
   const handleNext = async () => {
@@ -128,17 +141,52 @@ export default function RegisterPage() {
                         Select your trajectory.
                       </h2>
                       <div className="flex flex-col gap-2">
-                        <select {...register("track")} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-4 font-sans text-3xl font-light focus:outline-none focus:border-[#1A1A1A] transition-colors cursor-none appearance-none">
-                          <option value="">Select a track...</option>
-                          <option value="ai">Artificial Intelligence</option>
-                          <option value="cyber">Cybersecurity</option>
-                          <option value="web3">Web3 & DePIN</option>
-                          <option value="fintech">FinTech</option>
-                          <option value="health">Health-Tech</option>
-                          <option value="climate">Climate-Tech</option>
-                          <option value="edtech">Ed-Tech</option>
-                          <option value="open">Open Innovation</option>
-                        </select>
+                        <div className="relative">
+                          {/* Hidden input for RHF */}
+                          <input type="hidden" {...register("track")} />
+                          
+                          {/* Custom Select Trigger */}
+                          <div 
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="w-full flex justify-between items-center border-b border-[#1A1A1A]/20 py-4 cursor-none group"
+                          >
+                            <span className={`font-sans text-3xl font-light ${!selectedTrack ? 'text-[#1A1A1A]/40' : 'text-[#1A1A1A]'}`}>
+                              {selectedTrack ? TRACK_OPTIONS.find(t => t.value === selectedTrack)?.label : "Select a track..."}
+                            </span>
+                            <motion.svg 
+                              animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                              width="24" height="24" viewBox="0 0 24 24" fill="none"
+                              className="text-[#1A1A1A]/40 group-hover:text-[#1A1A1A] transition-colors"
+                            >
+                              <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </motion.svg>
+                          </div>
+
+                          {/* Custom Dropdown Menu */}
+                          <AnimatePresence>
+                            {isDropdownOpen && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                className="absolute top-full left-0 w-full mt-2 bg-[#F4F1EA] border border-[#1A1A1A]/10 shadow-2xl z-50 max-h-[40vh] overflow-y-auto"
+                              >
+                                {TRACK_OPTIONS.map((opt) => (
+                                  <div
+                                    key={opt.value}
+                                    onClick={() => {
+                                      setValue("track", opt.value, { shouldValidate: true });
+                                      setIsDropdownOpen(false);
+                                    }}
+                                    className="px-6 py-4 font-sans text-xl font-light hover:bg-[#1A1A1A] hover:text-[#F4F1EA] transition-colors cursor-none border-b border-[#1A1A1A]/5 last:border-0"
+                                  >
+                                    {opt.label}
+                                  </div>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
                         {errors.track && <span className="text-red-500 font-mono text-xs uppercase">{(errors.track as any).message}</span>}
                       </div>
                     </div>
