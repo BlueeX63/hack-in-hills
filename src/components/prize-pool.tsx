@@ -66,7 +66,7 @@ export function PrizePool() {
               <div className="font-mono text-[10px] tracking-widest text-[#F4F1EA]/40 uppercase mb-4">
                 02 // 1ST RUNNER UP
               </div>
-              <div className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter mb-4">
+              <div className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mb-4">
                 ₹1,00,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">
@@ -83,7 +83,7 @@ export function PrizePool() {
                 <span className="w-1.5 h-1.5 bg-[#6B7A75] rounded-full" />
                 01 // THE SUMMIT
               </div>
-              <div className="font-display text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter mb-4 text-[#E6E1D6]">
+              <div className="font-display text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter mb-4 text-[#E6E1D6]">
                 ₹2,50,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">
@@ -99,7 +99,7 @@ export function PrizePool() {
               <div className="font-mono text-[10px] tracking-widest text-[#F4F1EA]/40 uppercase mb-4">
                 03 // 2ND RUNNER UP
               </div>
-              <div className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter mb-4">
+              <div className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mb-4">
                 ₹50,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">

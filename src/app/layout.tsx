@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono, Anton, Bebas_Neue } from "next/font/google";
+import { Manrope, Syne, JetBrains_Mono, Anton, Cormorant_Garamond } from "next/font/google";
 import { SmoothScrolling } from "@/components/smooth-scrolling";
 import CustomCursor from "@/components/custom-cursor";
 import { Altimeter } from "@/components/altimeter";
 import { FilmGrain } from "@/components/film-grain";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
 });
 
@@ -27,11 +34,7 @@ const anton = Anton({
   subsets: ["latin"],
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
-  weight: "400",
-  subsets: ["latin"],
-});
+// Bebas Neue removed as it was not widely used and replaced by Syne.
 
 export const metadata: Metadata = {
   title: "Hack in Hills | Manali",
@@ -46,9 +49,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${anton.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${manrope.variable} ${syne.variable} ${jetbrainsMono.variable} ${anton.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#1A1A1A] text-foreground font-sans selection:bg-accent/30 selection:text-white relative">
+      <body className="min-h-full flex flex-col bg-[#1A1A1A] text-foreground font-sans selection:bg-accent/30 selection:text-white relative overscroll-none">
         <FilmGrain />
         <Altimeter />
         <CustomCursor />

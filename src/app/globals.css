@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-syne);
   --font-mono: var(--font-jetbrains-mono);
   --font-anton: var(--font-anton);
-  --font-bebas: var(--font-bebas-neue);
+  --font-serif: var(--font-cormorant);
 
   --color-background: #F4F1EA;
   --color-foreground: #1A1A1A;
