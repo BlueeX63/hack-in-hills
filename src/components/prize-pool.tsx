@@ -51,7 +51,7 @@ export function PrizePool() {
               Total Prize Pool
             </div>
             <div className="font-display text-[15vw] md:text-[10vw] font-black leading-none tracking-tighter text-[#E6E1D6]">
-              ₹5,00,000<span className="text-[#6B7A75]">+</span>
+              ₹50,000<span className="text-[#6B7A75]">+</span>
             </div>
           </motion.div>
 
@@ -67,7 +67,7 @@ export function PrizePool() {
                 02 // 1ST RUNNER UP
               </div>
               <div className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mb-4">
-                ₹1,00,000
+                ₹15,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">
                 The Silver Chest. Awarded for exceptional architectural design.
@@ -84,7 +84,7 @@ export function PrizePool() {
                 01 // THE SUMMIT
               </div>
               <div className="font-display text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter mb-4 text-[#E6E1D6]">
-                ₹2,50,000
+                ₹25,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">
                 The Golden Relic. The ultimate prize for the most flawless system.
@@ -100,7 +100,7 @@ export function PrizePool() {
                 03 // 2ND RUNNER UP
               </div>
               <div className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mb-4">
-                ₹50,000
+                ₹10,000
               </div>
               <p className="font-sans text-sm text-[#F4F1EA]/60 font-light">
                 The Bronze Chest. Awarded for innovative disruption.

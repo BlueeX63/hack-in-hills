@@ -120,7 +120,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
 
             {/* Bottom row: HILLS */}
             <div className="flex items-start justify-end w-full relative z-20">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 1.2 }}
@@ -162,6 +162,26 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
 
       {/* LAYER 4.5: WebGL Snow Particles */}
       <SnowParticles />
+
+      {/* Expedition Date Stamp */}
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -6 }}
+        animate={{ opacity: 1, y: 0, rotate: -3 }}
+        transition={{ duration: 1, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-8 md:bottom-14 left-1/2 -translate-x-1/2 z-50 pointer-events-none select-none"
+      >
+        <div className="flex flex-col items-center border border-white/30 bg-black/20 backdrop-blur-[2px] px-6 py-3 md:px-10 md:py-4">
+          <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-white/50 uppercase mb-1">
+            Expedition Date
+          </span>
+          <span className="font-display font-black text-2xl md:text-4xl tracking-tight text-[#F4F1EA] whitespace-nowrap">
+            03 OCTOBER 2026
+          </span>
+          <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-white/50 uppercase mt-1">
+            Manali · 2,050M
+          </span>
+        </div>
+      </motion.div>
 
       {/* Top Right Registration Button (Leather Tag) */}
       <div className="absolute right-6 md:right-12 z-50 pointer-events-auto origin-top">

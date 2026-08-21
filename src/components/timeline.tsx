@@ -8,7 +8,7 @@ const MILESTONES = [
   {
     id: "01",
     title: "BASE CAMP",
-    date: "10 OCT 2026",
+    date: "03 OCT 2026 · 08:00",
     desc: "Registration & Briefing. Oxygen levels normal.",
     elevation: "2,050M",
     align: "left"
@@ -16,7 +16,7 @@ const MILESTONES = [
   {
     id: "02",
     title: "ASCENT START",
-    date: "12 OCT 2026",
+    date: "03 OCT 2026 · 10:00",
     desc: "Ideation and team formation. The clock begins.",
     elevation: "2,400M",
     align: "right"
@@ -24,7 +24,7 @@ const MILESTONES = [
   {
     id: "03",
     title: "THE CRUX",
-    date: "13 OCT 2026",
+    date: "03 OCT 2026 · 15:00",
     desc: "Development phase. High pressure, intense coding.",
     elevation: "2,800M",
     align: "left"
@@ -32,7 +32,7 @@ const MILESTONES = [
   {
     id: "04",
     title: "SUMMIT PITCH",
-    date: "14 OCT 2026",
+    date: "03 OCT 2026 · 20:00",
     desc: "Final evaluations. Only the best architectures survive.",
     elevation: "3,200M",
     align: "right"
@@ -64,6 +64,12 @@ export function Timeline() {
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter">
             ELEVATION<br />PROFILE
           </h2>
+          <div className="mt-8 inline-flex items-center gap-3 self-center border border-[#1A1A1A]/20 px-5 py-2 md:px-6 md:py-2.5">
+            <span className="w-1.5 h-1.5 bg-[#1A1A1A] rounded-full" />
+            <span className="font-mono text-sm md:text-base font-bold tracking-[0.2em] uppercase text-[#1A1A1A]">
+              03 October 2026
+            </span>
+          </div>
         </div>
 
         {/* Timeline Container */}
