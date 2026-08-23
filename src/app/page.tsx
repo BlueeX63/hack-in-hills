@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Loader } from "@/components/loader";
 import { Hero } from "@/components/hero";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { Navbar } from "@/components/navbar";
 import { About } from "@/components/about";
 
 import { Tracks } from "@/components/tracks";
@@ -32,9 +33,10 @@ export default function Home() {
   }, [loading]);
 
   return (
-    <main className="relative flex flex-col min-h-screen bg-[#1A1A1A] text-foreground transition-colors duration-1000">
+    <main className="relative flex flex-col min-h-screen  text-foreground transition-colors duration-1000">
       <CustomCursor />
-      
+      <Navbar />
+
       {loading && (
         <Loader 
           onComplete={() => setLoading(false)} 

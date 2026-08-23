@@ -16,7 +16,8 @@ export function About() {
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   return (
-    <section 
+    <section
+      id="about"
       ref={containerRef}
       className="relative w-full bg-[#F4F1EA] text-[#1A1A1A] py-32 md:py-48 px-6 md:px-12 overflow-hidden selection:bg-[#1A1A1A] selection:text-[#F4F1EA]"
     >

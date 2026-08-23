@@ -16,7 +16,8 @@ export function PrizePool() {
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
   return (
-    <section 
+    <section
+      id="prizes"
       ref={containerRef}
       className="relative w-full bg-[#1A1A1A] text-[#F4F1EA] py-32 md:py-48 overflow-hidden selection:bg-[#F4F1EA] selection:text-[#1A1A1A]"
     >

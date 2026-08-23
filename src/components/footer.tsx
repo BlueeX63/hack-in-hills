@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 import { SnowParticles } from "./snow-particles";
 
 export function Footer() {
@@ -25,13 +26,19 @@ export function Footer() {
       <div className="fixed bottom-0 w-full h-[80vh] md:h-[90vh] flex flex-col justify-between pt-24 border-t border-[#F4F1EA]/10 z-10 pointer-events-none">
         
         {/* Top Grid */}
-        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-5 gap-12 md:gap-8">
           <div className="flex flex-col gap-4">
             <span className="font-mono text-[10px] tracking-widest uppercase text-[#F4F1EA]/40 mb-2">Location</span>
             <div className="font-sans font-light">
               Manali, HP<br />
               India
             </div>
+          </div>
+
+          <div className="flex flex-col gap-4 pointer-events-auto">
+            <span className="font-mono text-[10px] tracking-widest uppercase text-[#F4F1EA]/40 mb-2">Participate</span>
+            <Link href="/register" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Register Team</Link>
+            <Link href="/submit" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Submit Project</Link>
           </div>
 
           <div className="flex flex-col gap-4">

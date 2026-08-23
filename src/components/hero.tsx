@@ -34,6 +34,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
 
   return (
     <section
+      id="home"
       ref={containerRef}
       className="relative w-full h-screen min-h-screen overflow-hidden bg-[#050505]"
     >

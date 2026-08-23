@@ -46,7 +46,7 @@ export function Tracks() {
   const [hoveredTrack, setHoveredTrack] = useState<string | null>(null);
 
   return (
-    <section className="relative w-full bg-[#E6E1D6] text-[#1A1A1A] py-32 md:py-48 selection:bg-[#1A1A1A] selection:text-[#E6E1D6]">
+    <section id="tracks" className="relative w-full bg-[#E6E1D6] text-[#1A1A1A] py-32 md:py-48 selection:bg-[#1A1A1A] selection:text-[#E6E1D6]">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col">
         
         {/* Header */}

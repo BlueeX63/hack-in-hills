@@ -50,7 +50,8 @@ export function Timeline() {
   const lineDraw = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section 
+    <section
+      id="timeline"
       ref={containerRef}
       className="relative w-full bg-[#F4F1EA] text-[#1A1A1A] pt-32 md:pt-48 overflow-hidden selection:bg-[#1A1A1A] selection:text-[#F4F1EA]"
     >

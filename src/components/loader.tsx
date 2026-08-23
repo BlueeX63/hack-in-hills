@@ -44,9 +44,9 @@ export function Loader({ onComplete, onTearStart }: { onComplete: () => void, on
   const tearPoints = "50% 0%, 58% 12%, 42% 18%, 56% 35%, 45% 42%, 55% 60%, 42% 70%, 58% 85%, 50% 100%";
   
   const shakeAnimation: any = {
-    x: stage === "loading" ? ["-4px", "4px", "-2px", "2px", "0px"] : "0px",
-    y: stage === "loading" ? ["3px", "-3px", "2px", "-2px", "0px"] : "0px",
-    transition: { duration: 0.2, repeat: stage === "loading" ? Infinity : 0, ease: "linear" }
+    x: "0px",
+    y: "0px",
+    transition: { duration: 0.2, ease: "linear" }
   };
 
   return (
