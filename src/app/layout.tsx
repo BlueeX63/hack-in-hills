@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Syne, JetBrains_Mono, Anton, Cormorant_Garamond } from "next/font/google";
 import { SmoothScrolling } from "@/components/smooth-scrolling";
 import CustomCursor from "@/components/custom-cursor";
@@ -37,8 +37,41 @@ const anton = Anton({
 // Bebas Neue removed as it was not widely used and replaced by Syne.
 
 export const metadata: Metadata = {
-  title: "Hack in Hills | Manali",
-  description: "An expedition into technology.",
+  title: {
+    default: "Hack in Hills | Manali",
+    template: "%s | Hack in Hills",
+  },
+  description:
+    "A premium hackathon experience in the Himalayas. Code at altitude — build where the air gets thin.",
+  keywords: [
+    "Hack in Hills",
+    "Manali hackathon",
+    "Himalayan hackathon",
+    "hackathon India",
+  ],
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    title: "Hack in Hills | Manali",
+    description:
+      "A premium hackathon experience in the Himalayas. Code at altitude — build where the air gets thin.",
+    siteName: "Hack in Hills",
+    images: ["/logo.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Hack in Hills | Manali",
+    description:
+      "A premium hackathon experience in the Himalayas. Code at altitude — build where the air gets thin.",
+    images: ["/logo.png"],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1A1A1A",
 };
 
 export default function RootLayout({
