@@ -43,9 +43,9 @@ export function Footer() {
 
           <div className="flex flex-col gap-4">
             <span className="font-mono text-[10px] tracking-widest uppercase text-[#F4F1EA]/40 mb-2">Connect</span>
-            <a href="#" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Twitter</a>
-            <a href="#" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Instagram</a>
-            <a href="#" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Discord</a>
+            <a href="https://x.com/web3indiahq?s=11" target="_blank" rel="noopener noreferrer" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Twitter</a>
+            <a href="https://www.instagram.com/hackinhills" target="_blank" rel="noopener noreferrer" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">Instagram</a>
+            <a href="https://www.linkedin.com/company/hack-in-hills/" target="_blank" rel="noopener noreferrer" className="font-sans font-light hover:text-[#6B7A75] transition-colors cursor-none w-fit">LinkedIn</a>
           </div>
 
           <div className="flex flex-col gap-4">

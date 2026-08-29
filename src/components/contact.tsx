@@ -80,8 +80,9 @@ export function Contact() {
             <div>
               <div className="font-mono text-[10px] tracking-widest text-[#F4F1EA]/40 uppercase mb-2">Social</div>
               <div className="flex gap-6">
-                <a href="#" className="font-sans text-xl font-light hover:text-[#6B7A75] transition-colors cursor-none">Instagram</a>
-                <a href="#" className="font-sans text-xl font-light hover:text-[#6B7A75] transition-colors cursor-none">Twitter (X)</a>
+                <a href="https://www.instagram.com/hackinhills" target="_blank" rel="noopener noreferrer" className="font-sans text-xl font-light hover:text-[#6B7A75] transition-colors cursor-none">Instagram</a>
+                <a href="https://x.com/web3indiahq?s=11" target="_blank" rel="noopener noreferrer" className="font-sans text-xl font-light hover:text-[#6B7A75] transition-colors cursor-none">Twitter (X)</a>
+                <a href="https://www.linkedin.com/company/hack-in-hills/" target="_blank" rel="noopener noreferrer" className="font-sans text-xl font-light hover:text-[#6B7A75] transition-colors cursor-none">LinkedIn</a>
               </div>
             </div>
           </div>
