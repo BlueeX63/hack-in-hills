@@ -31,7 +31,7 @@ export function PrizePool() {
           </span>
           <div className="flex items-baseline gap-4">
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter">
-              BOUNTY
+              PRIZE POOL
             </h2>
             <div className="w-full h-[1px] bg-[#F4F1EA]/20 hidden md:block" />
           </div>

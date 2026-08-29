@@ -29,14 +29,14 @@ export function About() {
             <div className="flex items-center gap-4 mb-8">
               <span className="w-8 h-[1px] bg-[#1A1A1A]" />
               <span className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/60">
-                Expedition Details
+                Why The Hills
               </span>
             </div>
-            <motion.h2 
+            <motion.h2
               className="font-display text-6xl md:text-8xl lg:text-[10vw] font-black uppercase tracking-tighter leading-[0.85]"
               style={{ y: y1 }}
             >
-              THE<br />TERRAIN.
+              ABOUT<br />THE EVENT.
             </motion.h2>
           </div>
           <div className="mt-12 md:mt-0 font-mono text-sm tracking-widest text-[#1A1A1A]/40 uppercase text-left md:text-right pb-4">

@@ -60,10 +60,10 @@ export function Timeline() {
         {/* Header */}
         <div className="text-center mb-32">
           <span className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-4 block">
-            The Ascent
+            Elevation Profile
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter">
-            ELEVATION<br />PROFILE
+            EVENT<br />SCHEDULE
           </h2>
           <div className="mt-8 inline-flex items-center gap-3 self-center border border-[#1A1A1A]/20 px-5 py-2 md:px-6 md:py-2.5">
             <span className="w-1.5 h-1.5 bg-[#1A1A1A] rounded-full" />

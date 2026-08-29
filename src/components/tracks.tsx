@@ -52,10 +52,10 @@ export function Tracks() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 border-b border-[#1A1A1A]/10 pb-8">
           <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter">
-            DISCIPLINES
+            THE TRACKS
           </h2>
           <div className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mt-4 md:mt-0 max-w-xs text-right">
-            Select a trajectory for your expedition. Only one path can be taken.
+            Pick one track to build in. Your project must fit the theme you choose.
           </div>
         </div>
 

@@ -37,7 +37,7 @@ export function FAQ() {
         {/* Header */}
         <div className="text-center mb-24 md:mb-32">
           <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter">
-            INTELLIGENCE
+            TRANSMISSIONS
           </h2>
           <div className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mt-4">
             Frequently Asked Questions
