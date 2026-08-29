@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MountainTransition } from "./mountain-transition";
 
@@ -11,7 +12,8 @@ const MILESTONES = [
     date: "03 OCT 2026 · 08:00",
     desc: "Registration & Briefing. Oxygen levels normal.",
     elevation: "2,050M",
-    align: "left"
+    align: "left",
+    image: "/timeline-1.jpg"
   },
   {
     id: "02",
@@ -19,7 +21,8 @@ const MILESTONES = [
     date: "03 OCT 2026 · 10:00",
     desc: "Ideation and team formation. The clock begins.",
     elevation: "2,400M",
-    align: "right"
+    align: "right",
+    image: "/timeline-2.jpg"
   },
   {
     id: "03",
@@ -27,7 +30,8 @@ const MILESTONES = [
     date: "03 OCT 2026 · 15:00",
     desc: "Development phase. High pressure, intense coding.",
     elevation: "2,800M",
-    align: "left"
+    align: "left",
+    image: "/timeline-3.jpg"
   },
   {
     id: "04",
@@ -35,7 +39,8 @@ const MILESTONES = [
     date: "03 OCT 2026 · 20:00",
     desc: "Final evaluations. Only the best architectures survive.",
     elevation: "3,200M",
-    align: "right"
+    align: "right",
+    image: "/timeline-4.jpg"
   }
 ];
 
@@ -94,43 +99,79 @@ export function Timeline() {
                 </div>
 
                 {/* Content Left */}
-                <div className={`w-1/2 pr-8 md:pr-16 flex flex-col items-end text-right ${!isLeft ? 'opacity-0 pointer-events-none' : ''}`}>
-                  <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                  >
-                    <div className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 mb-2 uppercase">
-                      {milestone.date} // {milestone.elevation}
-                    </div>
-                    <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2">
-                      {milestone.title}
-                    </h3>
-                    <p className="font-sans text-[#1A1A1A]/60 text-sm md:text-base font-light max-w-xs">
-                      {milestone.desc}
-                    </p>
-                  </motion.div>
+                <div className="w-1/2 pr-8 md:pr-16 flex flex-col items-end text-right">
+                  {isLeft ? (
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                      <div className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 mb-2 uppercase">
+                        {milestone.date} // {milestone.elevation}
+                      </div>
+                      <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2">
+                        {milestone.title}
+                      </h3>
+                      <p className="font-sans text-[#1A1A1A]/60 text-sm md:text-base font-light max-w-xs">
+                        {milestone.desc}
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[3/4] overflow-hidden border border-[#1A1A1A]/10"
+                    >
+                      <Image
+                        src={milestone.image}
+                        alt={milestone.title}
+                        fill
+                        sizes="(max-width: 768px) 40vw, 260px"
+                        className="object-cover saturate-[0.35] contrast-[1.1]"
+                      />
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Content Right */}
-                <div className={`w-1/2 pl-8 md:pl-16 flex flex-col items-start text-left ${isLeft ? 'opacity-0 pointer-events-none' : ''}`}>
-                  <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                  >
-                    <div className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 mb-2 uppercase">
-                      {milestone.date} // {milestone.elevation}
-                    </div>
-                    <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2">
-                      {milestone.title}
-                    </h3>
-                    <p className="font-sans text-[#1A1A1A]/60 text-sm md:text-base font-light max-w-xs">
-                      {milestone.desc}
-                    </p>
-                  </motion.div>
+                <div className="w-1/2 pl-8 md:pl-16 flex flex-col items-start text-left">
+                  {!isLeft ? (
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                      <div className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 mb-2 uppercase">
+                        {milestone.date} // {milestone.elevation}
+                      </div>
+                      <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2">
+                        {milestone.title}
+                      </h3>
+                      <p className="font-sans text-[#1A1A1A]/60 text-sm md:text-base font-light max-w-xs">
+                        {milestone.desc}
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative w-full max-w-[220px] md:max-w-[260px] aspect-[3/4] overflow-hidden border border-[#1A1A1A]/10"
+                    >
+                      <Image
+                        src={milestone.image}
+                        alt={milestone.title}
+                        fill
+                        sizes="(max-width: 768px) 40vw, 260px"
+                        className="object-cover saturate-[0.35] contrast-[1.1]"
+                      />
+                    </motion.div>
+                  )}
                 </div>
 
               </div>

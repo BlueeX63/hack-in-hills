@@ -18,7 +18,7 @@ const FAQS = [
   {
     id: "03",
     question: "WHAT DO I NEED TO BRING?",
-    answer: "Your hardware, warm clothing, and relentless drive. We provide the power, high-speed internet, and sustenance necessary to keep your systems online for 48 hours."
+    answer: "Your hardware, warm clothing, and relentless drive. We provide the power, high-speed internet, and sustenance necessary to keep your systems online for 24 hours."
   },
   {
     id: "04",

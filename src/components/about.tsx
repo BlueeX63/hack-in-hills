@@ -93,7 +93,7 @@ export function About() {
                   2,200M
                 </div>
                 <h3 className="font-display text-3xl font-bold uppercase tracking-tight mb-4">
-                  48 Hours of Ice
+                  24 Hours of Ice
                 </h3>
                 <p className="font-sans text-base text-[#F4F1EA]/70 leading-relaxed font-light">
                   This is a grueling, non-stop marathon. You will be pushed to your absolute limits. Build production-ready, globally scalable systems under immense pressure. We provide the infrastructure; you provide the brilliance.
