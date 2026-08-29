@@ -3,11 +3,13 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { useLenis } from "lenis/react";
 import { SnowParticles } from "./snow-particles";
 
 export function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+  const lenis = useLenis();
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"]
@@ -56,8 +58,8 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col justify-start md:items-end pointer-events-auto">
-             <button 
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+             <button
+                onClick={() => lenis?.scrollTo(0, { duration: 1.8, easing: (t: number) => 1 - Math.pow(1 - t, 4) })}
                 className="group flex flex-col items-center gap-4 cursor-none"
               >
                 <div className="w-16 h-16 rounded-full border border-[#F4F1EA]/20 flex items-center justify-center group-hover:bg-[#F4F1EA] transition-colors duration-500">

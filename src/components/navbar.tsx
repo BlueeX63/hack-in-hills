@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 const NAV_LINKS = [
   { n: "01", label: "HOME", href: "#home" },
@@ -17,12 +18,23 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const lenis = useLenis();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (menuOpen) return;
     setHidden(latest > previous && latest > 160);
   });
+
+  const scrollToSection = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    lenis?.scrollTo(href, {
+      offset: -96,
+      duration: 1.8,
+      easing: (t: number) => 1 - Math.pow(1 - t, 4),
+    });
+  };
 
   return (
     <>
@@ -37,6 +49,7 @@ export function Navbar() {
           <Link
             href="#home"
             data-cursor-hover
+            onClick={(e) => scrollToSection(e, "#home")}
             className="flex items-center gap-3 pointer-events-auto cursor-none group"
           >
             <Image
@@ -58,6 +71,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 data-cursor-hover
+                onClick={(e) => scrollToSection(e, link.href)}
                 className="group flex items-center gap-1.5 font-mono text-[15px] font-bold tracking-[0.2em] uppercase text-white hover:text-[#F4F1EA] transition-colors cursor-none"
               >
         
@@ -114,7 +128,7 @@ export function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, link.href)}
                   initial={{ y: 24, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 + i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
