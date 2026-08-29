@@ -18,7 +18,6 @@ const SPONSORS: Sponsor[] = [
   { id: "coindcx", name: "CoinDCX", logo: "/sponsors/coindcx.png", },
   { id: "metamask", name: "MetaMask", logo: "/sponsors/metamask.png",},
   {id: "hackquests", name: "HackQuests", logo: "/sponsors/hackquest.png",},
-  { id: "kanthariya", name: "Kanthariya Technologies", logo: "/sponsors/kanthariya-technologies.png",},
   { id: "pbw", name: "Philippine Blockchain Week", logo: "/sponsors/philippine-blockchain-week.png", },
   { id: "idgs", name: "Indian Digital Gaming Society", logo: "/sponsors/idgs.png", },
     { id: "trae", name: "TRAE", logo: "/sponsors/trae.png", },
@@ -30,6 +29,7 @@ const SPONSORS: Sponsor[] = [
     {id:"metaspace", name: "Metaspace", logo: "/sponsors/metaspace.png", },
     {id:"redbull", name: "Red Bull", logo: "/sponsors/redbull.png", },
     {id:"payzolla", name: "Payzolla", logo: "/sponsors/payzoll.png", },
+    {id:"cii", name: "CII", logo: "/sponsors/CII.png", },
 ];
 
 export function Sponsors() {
@@ -50,7 +50,7 @@ export function Sponsors() {
         </div>
 
         {/* Logo Wall */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-[#1A1A1A]/10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-t border-l border-[#1A1A1A]/10">
           {SPONSORS.map((sponsor, index) => (
             <motion.div
               key={sponsor.id}
