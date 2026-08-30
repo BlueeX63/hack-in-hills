@@ -12,33 +12,15 @@ const TRACKS = [
   },
   {
     id: "02",
-    title: "CYBERSECURITY",
-    desc: "Design impenetrable fortresses. Defend against simulated zero-day attacks while maintaining system uptime.",
-    points: ["Adaptive cryptography", "Zero-Trust architecture", "Automated threat neutralizing"]
-  },
-  {
-    id: "03",
     title: "WEB3 & DEPIN",
     desc: "The future is trustless. Build the decentralized infrastructure that powers the next era of human coordination.",
     points: ["Blockchain trilemma optimization", "zk-Rollups", "DePIN networks"]
   },
   {
-    id: "04",
+    id: "03",
     title: "FINTECH",
     desc: "Redefine global capital flow. Strip away legacy financial bottlenecks and create frictionless monetary systems.",
     points: ["High-frequency transactions", "Zero gas fee models", "Algorithmic stability"]
-  },
-  {
-    id: "05",
-    title: "HEALTH-TECH",
-    desc: "Code that saves lives. Push the boundaries of human longevity and medical data processing.",
-    points: ["Genomic data parsing", "Pathological anomaly prediction", "Real-time biometric telemetry"]
-  },
-  {
-    id: "06",
-    title: "CLIMATE-TECH",
-    desc: "Engineering for planetary survival. Build the software that reverses the damage of the industrial age.",
-    points: ["Decentralized energy grids", "Battery waste reduction", "Carbon tracking ledgers"]
   }
 ];
 
