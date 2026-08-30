@@ -6,10 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 
 const registrationSchema = z.object({
   teamName: z.string().min(2, "Team name is required"),
-  teamSize: z.coerce.number().min(1, "Min 1").max(4, "Max 4"),
+  teamSize: z.number().min(1, "Min 1").max(4, "Max 4"),
   members: z.array(z.object({
     name: z.string().min(2, "Name is required"),
     email: z.string().email("Invalid email"),
@@ -18,15 +19,19 @@ const registrationSchema = z.object({
   track: z.string().min(2, "Track is required")
 });
 
+type RegistrationData = z.infer<typeof registrationSchema>;
+
 export default function RegisterPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { register, handleSubmit, watch, trigger, setValue, formState: { errors } } = useForm<any>({
+  const { register, handleSubmit, watch, trigger, setValue, formState: { errors } } = useForm<RegistrationData>({
     resolver: zodResolver(registrationSchema),
     mode: "onBlur",
-    defaultValues: { teamSize: 1, members: [{ name: "", email: "", phone: "" }] }
+    defaultValues: { teamSize: 1, members: [{ name: "", email: "", phone: "" }], track: "" }
   });
 
   const teamSize = watch("teamSize") || 1;
@@ -41,22 +46,30 @@ export default function RegisterPage() {
 
   const TRACK_OPTIONS = [
     { value: "ai", label: "Artificial Intelligence" },
-    { value: "cyber", label: "Cybersecurity" },
     { value: "web3", label: "Web3 & DePIN" },
-    { value: "fintech", label: "FinTech" },
-    { value: "health", label: "Health-Tech" },
-    { value: "climate", label: "Climate-Tech" },
-    { value: "edtech", label: "Ed-Tech" },
-    { value: "open", label: "Open Innovation" }
+    { value: "fintech", label: "FinTech" }
   ];
 
   const handleNext = async () => {
-    const isValid = await trigger(STEPS[activeStep].fields as any);
+    const isValid = await trigger(STEPS[activeStep].fields as (keyof RegistrationData)[]);
     if (isValid && activeStep < STEPS.length - 1) setActiveStep(prev => prev + 1);
   };
 
-  const onSubmit = (data: any) => {
-    console.log("REGISTERED:", data);
+  const onSubmit = async (data: RegistrationData) => {
+    setSubmitError(null);
+    setIsSubmitting(true);
+    const { error } = await supabase.from("registrations").insert({
+      team_name: data.teamName,
+      team_size: data.teamSize,
+      track: data.track,
+      members: data.members
+    });
+    setIsSubmitting(false);
+
+    if (error) {
+      setSubmitError("Transmission failed. Check your connection and try again.");
+      return;
+    }
     setIsSuccess(true);
   };
 
@@ -84,7 +97,7 @@ export default function RegisterPage() {
                 <div key={index} className="flex-1">
                   <div className={`h-[2px] w-full transition-colors duration-500 ${index <= activeStep ? 'bg-[#1A1A1A]' : 'bg-[#1A1A1A]/10'}`} />
                   <div className={`font-mono text-[10px] tracking-widest uppercase mt-4 transition-opacity duration-500 ${index <= activeStep ? 'opacity-100' : 'opacity-30'}`}>
-                    0{index + 1} // {step.title}
+                    0{index + 1} {"//"} {step.title}
                   </div>
                 </div>
               ))}
@@ -108,11 +121,12 @@ export default function RegisterPage() {
                       </h2>
                       <div className="flex flex-col gap-2">
                         <input {...register("teamName")} placeholder="Squad Designation" className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-4 font-sans text-3xl font-light focus:outline-none focus:border-[#1A1A1A] transition-colors cursor-none placeholder-[#1A1A1A]/20" />
-                        {errors.teamName && <span className="text-red-500 font-mono text-xs uppercase">{(errors.teamName as any).message}</span>}
+                        {errors.teamName && <span className="text-red-500 font-mono text-xs uppercase">{errors.teamName.message}</span>}
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="font-mono text-xs tracking-widest uppercase text-[#1A1A1A]/50">Crew Size (1-4)</label>
-                        <input {...register("teamSize")} type="number" min="1" max="4" className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-4 font-sans text-3xl font-light focus:outline-none focus:border-[#1A1A1A] transition-colors cursor-none" />
+                        <input {...register("teamSize", { valueAsNumber: true })} type="number" min="1" max="4" className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-4 font-sans text-3xl font-light focus:outline-none focus:border-[#1A1A1A] transition-colors cursor-none" />
+                        {errors.teamSize && <span className="text-red-500 font-mono text-xs uppercase">{errors.teamSize.message}</span>}
                       </div>
                     </div>
                   )}
@@ -187,7 +201,7 @@ export default function RegisterPage() {
                             )}
                           </AnimatePresence>
                         </div>
-                        {errors.track && <span className="text-red-500 font-mono text-xs uppercase">{(errors.track as any).message}</span>}
+                        {errors.track && <span className="text-red-500 font-mono text-xs uppercase">{errors.track.message}</span>}
                       </div>
                     </div>
                   )}
@@ -196,16 +210,26 @@ export default function RegisterPage() {
               </AnimatePresence>
 
               {/* Navigation */}
-              <div className="flex justify-end mt-16 pt-8 border-t border-[#1A1A1A]/10">
-                {activeStep < STEPS.length - 1 ? (
-                  <button type="button" onClick={handleNext} className="font-mono text-sm tracking-widest uppercase font-bold px-8 py-4 border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F4F1EA] transition-colors cursor-none">
-                    Next Step
-                  </button>
-                ) : (
-                  <button type="submit" className="font-mono text-sm tracking-widest uppercase font-bold px-8 py-4 bg-[#1A1A1A] text-[#F4F1EA] hover:bg-[#1A1A1A]/80 transition-colors cursor-none">
-                    Authorize & Submit
-                  </button>
-                )}
+              <div className="flex justify-between items-center mt-16 pt-8 border-t border-[#1A1A1A]/10">
+                <div>
+                  {submitError && <span className="text-red-500 font-mono text-xs uppercase">{submitError}</span>}
+                </div>
+                <div className="flex gap-4">
+                  {activeStep > 0 && (
+                    <button type="button" onClick={() => setActiveStep(prev => prev - 1)} className="font-mono text-sm tracking-widest uppercase font-bold px-8 py-4 border border-[#1A1A1A]/20 hover:border-[#1A1A1A] transition-colors cursor-none">
+                      Back
+                    </button>
+                  )}
+                  {activeStep < STEPS.length - 1 ? (
+                    <button type="button" onClick={handleNext} className="font-mono text-sm tracking-widest uppercase font-bold px-8 py-4 border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F4F1EA] transition-colors cursor-none">
+                      Next Step
+                    </button>
+                  ) : (
+                    <button type="submit" disabled={isSubmitting} className="font-mono text-sm tracking-widest uppercase font-bold px-8 py-4 bg-[#1A1A1A] text-[#F4F1EA] hover:bg-[#1A1A1A]/80 transition-colors cursor-none disabled:opacity-50">
+                      {isSubmitting ? "Authorizing..." : "Authorize & Submit"}
+                    </button>
+                  )}
+                </div>
               </div>
             </form>
 

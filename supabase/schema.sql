@@ -22,6 +22,26 @@ create policy "Public can insert submissions"
   to anon
   with check (true);
 
+create table if not exists public.registrations (
+  id uuid primary key default gen_random_uuid(),
+  team_name text not null,
+  team_size integer not null,
+  track text not null,
+  members jsonb not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.registrations enable row level security;
+
+-- Anyone can register a team (the form is public), but no one can read,
+-- update, or delete rows via the anon key -- do that from the Supabase
+-- dashboard/Table Editor instead.
+create policy "Public can insert registrations"
+  on public.registrations
+  for insert
+  to anon
+  with check (true);
+
 create table if not exists public.contact_messages (
   id uuid primary key default gen_random_uuid(),
   name text not null,
