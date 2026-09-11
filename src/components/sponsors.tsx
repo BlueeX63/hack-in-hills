@@ -68,7 +68,7 @@ export function Sponsors() {
               <div className={`absolute bottom-6 left-6 w-4 h-4 border-b border-l opacity-0 group-hover:opacity-30 transition-all duration-500 -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 ${sponsor.dark ? "border-[#F4F1EA]" : "border-[#1A1A1A]"}`} />
               <div className={`absolute bottom-6 right-6 w-4 h-4 border-b border-r opacity-0 group-hover:opacity-30 transition-all duration-500 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 ${sponsor.dark ? "border-[#F4F1EA]" : "border-[#1A1A1A]"}`} />
 
-              <div className="relative w-full h-14 md:h-16 lg:h-30 z-10 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105">
+              <div className="relative w-full h-14 md:h-16 lg:h-30 z-10 md:grayscale md:opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105">
                 <Image
                   src={sponsor.logo}
                   alt={sponsor.name}

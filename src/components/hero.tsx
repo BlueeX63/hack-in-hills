@@ -171,11 +171,11 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
         transition={{ duration: 1, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-8 md:bottom-14 left-1/2 -translate-x-1/2 z-50 pointer-events-none select-none"
       >
-        <div className="flex flex-col items-center border border-white/30 bg-black/20 backdrop-blur-[2px] px-6 py-3 md:px-10 md:py-4">
-          <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-white/50 uppercase mb-1">
+        <div className="flex flex-col items-center border border-white/30 bg-black/20 backdrop-blur-[2px] px-4 py-3 sm:px-6 md:px-10 md:py-4 max-w-[92vw]">
+          <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-white/50 uppercase mb-1">
             Expedition Date
           </span>
-          <span className="font-display font-[var(--font-anton)] text-3xl md:text-5xl tracking-wide uppercase text-[#F4F1EA] whitespace-nowrap drop-shadow-lg">
+          <span className="font-display font-[var(--font-anton)] text-xl sm:text-3xl md:text-5xl tracking-wide uppercase text-[#F4F1EA] whitespace-nowrap drop-shadow-lg">
             21 NOVEMBER 2026
           </span>
           <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-white/50 uppercase mt-1">
@@ -185,7 +185,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       </motion.div>
 
       {/* Top Right Registration Button (Leather Tag) */}
-      <div className="absolute right-6 md:right-12 z-50 pointer-events-auto origin-top">
+      <div className="absolute right-4 top-20 md:right-12 md:top-0 z-50 pointer-events-auto origin-top">
         <AnimatePresence>
           {isLoaded && (
             <Link
@@ -206,7 +206,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
                 }}
                 whileHover={{ scale: 1.03 }} 
                 whileTap={{ scale: 0.95 }}
-                className="relative w-[200px] h-[100px] md:w-[260px] md:h-[120px] group cursor-none"
+                className="relative w-[150px] h-[75px] sm:w-[180px] sm:h-[90px] md:w-[260px] md:h-[120px] group cursor-none"
               >
                 {/* Magnetic Hover Target (invisible) */}
                 <div className="absolute inset-0 z-20 cursor-none" />

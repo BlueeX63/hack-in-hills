@@ -47,10 +47,11 @@ export function Tracks() {
             const isHovered = hoveredTrack === track.id;
 
             return (
-              <div 
+              <div
                 key={track.id}
                 onMouseEnter={() => setHoveredTrack(track.id)}
                 onMouseLeave={() => setHoveredTrack(null)}
+                onClick={() => setHoveredTrack(isHovered ? null : track.id)}
                 className="group border-b border-[#1A1A1A]/10 last:border-0 relative cursor-none"
               >
                 {/* The Visible Row */}
@@ -65,7 +66,7 @@ export function Tracks() {
                   </div>
                   
                   {/* Plus Icon that rotates */}
-                  <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-[#1A1A1A]/20 transition-transform duration-700" style={{ transform: isHovered ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1A1A1A]/20 transition-transform duration-700 mt-4 md:mt-0 self-start md:self-auto" style={{ transform: isHovered ? 'rotate(45deg)' : 'rotate(0deg)' }}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7 0V14M0 7H14" stroke="#1A1A1A" strokeWidth="1.5"/>
                     </svg>
