@@ -17,11 +17,13 @@ const NAV_LINKS = [
 export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isOverHero, setIsOverHero] = useState(true);
   const { scrollY } = useScroll();
   const lenis = useLenis();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
+    setIsOverHero(latest < window.innerHeight * 0.85);
     if (menuOpen) return;
     setHidden(latest > previous && latest > 160);
   });
@@ -42,7 +44,7 @@ export function Navbar() {
         initial={{ y: 0 }}
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed -top-4 inset-x-0 z-[100] mix-blend-difference pointer-events-none"
+        className={`fixed -top-4 inset-x-0 z-[100] pointer-events-none ${isOverHero ? "" : "mix-blend-difference"}`}
       >
         <div className="flex items-center justify-between px-6 md:px-7  text-[#F4F1EA]">
           {/* Left: Logo / Identity */}
@@ -83,19 +85,8 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Right: Register + Mobile Toggle */}
+          {/* Right: Mobile Toggle */}
           <div className="flex items-center gap-6 pointer-events-auto">
-            <Link
-              href="/register"
-              data-cursor-hover
-              className="hidden md:flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase text-[#F4F1EA] hover:opacity-60 transition-opacity cursor-none"
-            >
-              Register
-              <span className="inline-block transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-
             <button
               onClick={() => setMenuOpen((v) => !v)}
               data-cursor-hover
@@ -140,20 +131,6 @@ export function Navbar() {
                   </span>
                 </motion.a>
               ))}
-              <motion.div
-                initial={{ y: 24, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 + NAV_LINKS.length * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-6"
-              >
-                <Link
-                  href="/register"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex items-center gap-2 font-mono text-sm tracking-[0.2em] uppercase text-[#1A1A1A] bg-[#F4F1EA] px-6 py-3 cursor-none"
-                >
-                  Register →
-                </Link>
-              </motion.div>
             </nav>
 
             <div className="absolute bottom-8 left-8 font-mono text-[10px] tracking-widest text-[#F4F1EA]/40 uppercase">

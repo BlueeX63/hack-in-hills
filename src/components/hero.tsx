@@ -175,7 +175,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-white/50 uppercase mb-1">
             Expedition Date
           </span>
-          <span className="font-display font-black text-2xl md:text-4xl tracking-tight text-[#F4F1EA] whitespace-nowrap">
+          <span className="font-display font-[var(--font-anton)] text-3xl md:text-5xl tracking-wide uppercase text-[#F4F1EA] whitespace-nowrap drop-shadow-lg">
             21 NOVEMBER 2026
           </span>
           <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-white/50 uppercase mt-1">
@@ -188,7 +188,12 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       <div className="absolute right-6 md:right-12 z-50 pointer-events-auto origin-top">
         <AnimatePresence>
           {isLoaded && (
-            <Link href="/register" className="block cursor-none">
+            <Link
+              href="https://unstop.com/hackathons/hack-in-hills-26-galgotias-university-gu-greater-noida-1752595?lb=TUn3UTaD"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block cursor-none"
+            >
               <motion.div
                 initial={{ y: -300 }}
                 animate={{ y: 0 }}
