@@ -176,7 +176,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             Expedition Date
           </span>
           <span className="font-display font-black text-2xl md:text-4xl tracking-tight text-[#F4F1EA] whitespace-nowrap">
-            03 OCTOBER 2026
+            21 NOVEMBER 2026
           </span>
           <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-white/50 uppercase mt-1">
             Manali · 2,050M
