@@ -74,19 +74,25 @@ export function About() {
             ))}
           </div>
 
-          <div className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 lg:pl-8 lg:border-l border-[#1A1A1A]/15">
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 sm:gap-y-10 lg:pl-8 lg:border-l border-[#1A1A1A]/15">
             {TRACK_RECORD.map((stat) => (
               <div
                 key={stat.label}
                 data-cursor="peak"
                 data-cursor-text="RECORD"
                 data-cursor-alt={stat.label.toUpperCase()}
-                className="flex flex-col"
+                className="flex flex-col @container"
               >
+                {/*
+                  * Sized against the cell, not the breakpoint. "15,000+" is ~6em wide in Syne
+                  * Black, and at lg this column becomes 5/12 of the page — a 152px cell — while
+                  * a breakpoint-based size was growing the type to 48px, overflowing by 138px.
+                  * The clamp keeps it legible in a narrow cell and capped in a wide one.
+                  */}
                 <CountUp
                   to={stat.value}
                   suffix={stat.suffix}
-                  className="font-display font-black text-4xl md:text-5xl tracking-tighter tabular-nums"
+                  className="font-display font-black text-[clamp(1.5rem,15.5cqw,3rem)] leading-none tracking-tighter tabular-nums"
                 />
                 <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]/45 mt-2">
                   {stat.label}
@@ -102,9 +108,9 @@ export function About() {
             {EXPECTATIONS.map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col gap-2 py-8 px-4 first:pl-0 border-r last:border-r-0 border-[#1A1A1A]/10"
+                className="flex flex-col gap-2 py-8 px-4 first:pl-0 border-r last:border-r-0 border-[#1A1A1A]/10 @container"
               >
-                <span className="font-display font-black text-2xl md:text-3xl tracking-tighter">
+                <span className="font-display font-black text-[clamp(1.1rem,17cqw,1.875rem)] leading-none tracking-tighter">
                   {item.value}
                 </span>
                 <span className="font-mono text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]/45 leading-relaxed">

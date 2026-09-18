@@ -14,8 +14,8 @@ export function FAQ() {
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         
         {/* Header */}
-        <div className="text-center mb-24 md:mb-32">
-          <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter">
+        <div className="text-center mb-20 md:mb-32 @container">
+          <h2 className="font-display text-[6.5cqw] md:text-6xl font-black uppercase tracking-tighter">
             TRANSMISSIONS
           </h2>
           <div className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mt-4">
@@ -35,19 +35,19 @@ export function FAQ() {
                   data-cursor="expand"
                   data-cursor-text={isOpen ? "CLOSE" : "OPEN"}
                   data-cursor-alt={`TRANSMISSION ${faq.id}`}
-                  className="w-full py-8 flex items-center justify-between focus:outline-none group"
+                  className="w-full py-6 md:py-8 flex items-start justify-between gap-5 md:gap-8 focus:outline-none group"
                 >
-                  <div className="flex items-center gap-8">
-                    <span className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 uppercase">
+                  <div className="flex items-start gap-3 md:gap-8 min-w-0">
+                    <span className="font-mono text-[10px] tracking-widest text-[#1A1A1A]/40 uppercase shrink-0 pt-1.5 md:pt-2">
                       [{faq.id}]
                     </span>
-                    <span className={`font-display text-2xl md:text-3xl font-bold uppercase tracking-tight transition-colors duration-500 text-left ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/60 group-hover:text-[#1A1A1A]'}`}>
+                    <span className={`font-display text-lg sm:text-2xl md:text-3xl font-bold uppercase tracking-tight leading-tight transition-colors duration-500 text-left ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/60 group-hover:text-[#1A1A1A]'}`}>
                       {faq.question}
                     </span>
                   </div>
                   
                   {/* Elegant morphing plus/minus icon */}
-                  <div className="relative w-4 h-4 flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <div className="relative w-4 h-4 shrink-0 mt-1.5 md:mt-2 opacity-50 group-hover:opacity-100 transition-opacity">
                     <motion.div 
                       className="absolute top-1/2 left-0 w-full h-[2px] bg-[#1A1A1A] -translate-y-1/2"
                     />
@@ -67,7 +67,7 @@ export function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <p className="pb-12 pl-14 md:pl-20 font-sans text-lg md:text-xl font-light text-[#1A1A1A]/70 leading-relaxed max-w-2xl">
+                      <p className="pb-10 md:pb-12 pl-9 md:pl-20 pr-2 font-sans text-base md:text-xl font-light text-[#1A1A1A]/70 leading-relaxed max-w-2xl">
                         {faq.answer}
                       </p>
                     </motion.div>

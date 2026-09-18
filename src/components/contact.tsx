@@ -54,11 +54,13 @@ export function Contact() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-start gap-24 relative z-10">
 
         {/* Left Side: Massive Typography */}
-        <div className="w-full md:w-5/12 flex flex-col">
+        <div className="w-full md:w-5/12 flex flex-col @container">
           <span className="font-mono text-[10px] tracking-widest uppercase text-[#F4F1EA]/40 mb-6">
             [ COMMUNICATIONS ]
           </span>
-          <h2 className="font-display text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] mb-12">
+          <h2 // Sized against this column: "TOUCH." is ~6.6em wide, and at a fixed 96px it ran past
+            // the 5/12 column on every screen — it was only ever hidden by overflow-hidden.
+            className="font-display text-[14.5cqw] font-black uppercase tracking-tighter leading-[0.85] mb-12">
             GET IN<br />TOUCH.
           </h2>
           <div className="flex flex-col gap-8">
