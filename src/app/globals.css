@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-syne);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-anton: var(--font-anton);
+  --font-serif: var(--font-cormorant);
+
+  --color-background: #F4F1EA;
+  --color-foreground: #1A1A1A;
+  --color-accent: #1A1A1A;
+  --color-accent-warm: #6B7A75;
+  --color-charcoal: #1A1A1A;
+  --color-ice: #F4F1EA;
+
+  /* Shared once here instead of being injected as a duplicate <style> tag by every
+     snow layer. Duration/delay are overridden per flake. */
+  --animate-snowfall: snowfall 15s linear infinite;
+  --animate-shootingstar: shootingstar 3s linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--snow-drift, 20px), 110vh, 0);
+    opacity: 0;
+  }
+}
+
+/*
+ * Travels along its own local X axis. The wrapper is rotated past vertical, so "forward"
+ * for the streak is down and across the frame — a meteor falling over the range rather
+ * than a gust blowing across it.
+ */
+@keyframes shootingstar {
+  0% {
+    transform: translate3d(-40vmax, 0, 0) scaleX(0.4);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(130vmax, 0, 0) scaleX(1);
+    opacity: 0;
+  }
+}
+
+:root {
+  --background: #F4F1EA;
+  --foreground: #1A1A1A;
+}
+
+/* Specific elements that need dark mode explicitly can use .dark */
+.dark {
+  --background: #000000;
+  --foreground: #f8fafc;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Hide scrollbar for clean cinematic look */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/*
+ * Custom cursor.
+ *
+ * This was `* { cursor: none !important }`, which makes the engine apply an
+ * !important declaration to every element in the document on each style recalculation,
+ * and left the page with no pointer at all whenever the JS cursor did not mount.
+ * The class is now added by CustomCursor once it is actually on screen, and it targets
+ * only the elements whose UA cursor would otherwise win over inheritance.
+ */
+html.cursor-hidden,
+html.cursor-hidden a,
+html.cursor-hidden button,
+html.cursor-hidden input,
+html.cursor-hidden textarea,
+html.cursor-hidden select,
+html.cursor-hidden label,
+html.cursor-hidden [role="button"] {
+  cursor: none;
+}
+
+/* Purely decorative blur/shadow is the first thing to go on a weak GPU. */
+html[data-perf="low"] [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-perf="low"] [class*="drop-shadow"] {
+  filter: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
