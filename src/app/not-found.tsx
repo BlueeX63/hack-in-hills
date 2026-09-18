@@ -68,7 +68,7 @@ export default function NotFound() {
   }, [animate]);
 
   return (
-    <main className="relative min-h-screen w-full bg-[#0E0E0E] text-[#F4F1EA] overflow-hidden flex flex-col">
+    <main className="relative min-h-screen w-full bg-[#0E0E0E] text-[#F4F1EA] overflow-x-hidden flex flex-col">
       {/* The ridge, with a route that stops. */}
       <svg
         aria-hidden
@@ -116,28 +116,28 @@ export default function NotFound() {
       </svg>
 
       {/* Header strip */}
-      <header className="relative z-10 flex items-center justify-between px-6 md:px-12 pt-8">
+      <header className="relative z-10 flex items-center justify-between gap-4 px-5 sm:px-6 md:px-12 pt-6 md:pt-8">
         <Link
           href="/"
           data-cursor-hover
           data-cursor-text="BASE CAMP"
-          className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#F4F1EA]/50 hover:text-[#F4F1EA] transition-colors"
+          className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[#F4F1EA]/50 hover:text-[#F4F1EA] transition-colors truncate"
         >
           ← {EVENT.name}
         </Link>
-        <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#FF512F] flex items-center gap-2">
+        <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[#FF512F] flex items-center gap-2 shrink-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[#FF512F] animate-pulse" />
           Signal Lost
         </span>
       </header>
 
       {/* The statement */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 py-16">
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-5 sm:px-6 md:px-12 py-10 md:py-16 @container">
         <motion.span
           initial={animate ? { opacity: 0, y: 12 } : false}
           animate={animate ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[10px] md:text-xs tracking-[0.35em] uppercase text-[#F4F1EA]/40 mb-6"
+          className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] sm:tracking-[0.35em] uppercase text-[#F4F1EA]/40 mb-4 md:mb-6"
         >
           Error 404 · No Grid Reference
         </motion.span>
@@ -146,7 +146,10 @@ export default function NotFound() {
           initial={animate ? { opacity: 0, y: 24 } : false}
           animate={animate ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="font-display font-black uppercase tracking-tighter leading-[0.82] text-[19vw] md:text-[15vw] lg:text-[11rem] text-[#F4F1EA]"
+          // "ROUTE" is ~5.6em wide in Syne Black, so the type is capped at 17% of this
+          // container (vw units overflowed a 375px phone by 66px) and at 20vh, so a short
+          // landscape window does not get a headline taller than the space around it.
+          className="font-display font-black uppercase tracking-tighter leading-[0.82] text-[clamp(2.75rem,min(17cqw,20vh),11rem)] text-[#F4F1EA]"
         >
           Off
           <br />
@@ -157,7 +160,7 @@ export default function NotFound() {
           initial={animate ? { opacity: 0 } : false}
           animate={animate ? { opacity: 1 } : undefined}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="font-sans text-base md:text-lg font-light text-[#F4F1EA]/55 max-w-md mt-8"
+          className="font-sans text-sm sm:text-base md:text-lg font-light text-[#F4F1EA]/55 max-w-md mt-5 md:mt-8"
         >
           This path is not on the map. The page you asked for was never surveyed, or the
           route has since been closed.
@@ -167,14 +170,14 @@ export default function NotFound() {
           initial={animate ? { opacity: 0, y: 12 } : false}
           animate={animate ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-12"
+          className="mt-8 md:mt-12"
         >
           <Link
             href="/"
             data-cursor="peak"
             data-cursor-text="DESCEND"
             data-cursor-alt="BASE CAMP"
-            className="group inline-flex items-center gap-5 border border-[#F4F1EA]/25 hover:border-[#F4F1EA] px-7 py-5 font-mono text-[11px] tracking-[0.25em] uppercase font-bold transition-colors"
+            className="group inline-flex items-center gap-4 sm:gap-5 border border-[#F4F1EA]/25 hover:border-[#F4F1EA] px-5 py-4 sm:px-7 sm:py-5 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold transition-colors"
           >
             Return to Base Camp
             <span className="transition-transform duration-500 group-hover:translate-x-1" aria-hidden>
@@ -189,7 +192,7 @@ export default function NotFound() {
         initial={animate ? { opacity: 0 } : false}
         animate={animate ? { opacity: 1 } : undefined}
         transition={{ duration: 0.8, delay: 0.9 }}
-        className="relative z-10 border-t border-[#F4F1EA]/12 px-6 md:px-12 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+        className="relative z-10 border-t border-[#F4F1EA]/12 px-5 sm:px-6 md:px-12 py-5 md:py-6 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-5 md:gap-8"
       >
         <Readout label="Last Fix" value={coords} />
         <Readout label="Bearing" value={bearing} />
@@ -221,7 +224,7 @@ function Readout({
         {label}
       </span>
       <span
-        className={`font-mono text-[11px] md:text-xs tracking-[0.12em] uppercase ${
+        className={`font-mono text-[10px] md:text-xs tracking-[0.06em] sm:tracking-[0.12em] uppercase break-words ${
           accent ? "text-[#FF512F]" : "text-[#F4F1EA]/80"
         }`}
       >

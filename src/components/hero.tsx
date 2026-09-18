@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePres
 import Link from "next/link";
 import Image from "next/image";
 import { usePerformance } from "@/hooks/use-performance";
-import { ParticleLogo } from "./particle-logo";
 import { EVENT } from "@/lib/content";
 
 export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
@@ -93,21 +92,6 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           <div className="absolute w-[65vh] h-[65vh] md:w-[85vh] md:h-[85vh] rounded-full border-[1px] border-white/5 border-dashed animate-[spin_90s_linear_infinite_reverse]" />
         </motion.div>
       )}
-
-      {/* LAYER 2.5: The summit mark assembling itself out of snow — the survey reading of
-          the same ridge the photograph shows below it. Cropped to the mountain alone; the
-          lockup's wordmark would only repeat the headline in front of it. */}
-      <div className="absolute inset-0 z-[15] flex items-center justify-center pointer-events-none select-none">
-        <div className="relative w-[118vw] h-[74vh] md:w-[104vw] md:h-[80vh] mt-[-16vh] md:mt-[-19vh]">
-          <ParticleLogo
-            className="absolute inset-0"
-            crop={{ bottom: 0.42 }}
-            fit={1.15}
-            density={3000}
-            color="rgba(205,228,250,0.42)"
-          />
-        </div>
-      </div>
 
       {/* LAYER 3: Massive Typography (Slides behind cutout) */}
       <motion.div
