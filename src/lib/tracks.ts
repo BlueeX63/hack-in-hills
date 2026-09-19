@@ -31,6 +31,8 @@ export type Track = {
   /** "Teams can explore solutions such as" — omitted where the brief gives none. */
   explore?: readonly { title: string; body: string }[];
   challenge: string;
+  /** PDF download link for the problem statement */
+  pdfUrl?: string;
   annex?: {
     label: string;
     intro: string;
@@ -67,6 +69,7 @@ export const TRACKS: readonly Track[] = [
       "Find and act on relative mispricing between contracts on the same underlying metal.",
     stack: ["Data Engineering", "Quant Research", "Backtesting", "Python"],
     elevation: "3,200M",
+    pdfUrl: "/Hack_in_Hills_26_Problem_Statements.pdf",
     problem:
       "Build a data product on India's public commodity futures record that finds and acts on relative mispricing between contracts on the same underlying metal. MCX lists the same gold in four sizes (GOLDM, GOLDTEN, GOLDGUINEA, GOLDPETAL), so per gram they should cost the same. They nearly do, and the small difference moves.",
     explore: [
@@ -200,6 +203,7 @@ export const TRACKS: readonly Track[] = [
       "A robot that sees its surroundings and navigates to an objective on its own.",
     stack: ["Computer Vision", "Robotics", "Embedded", "VLM"],
     elevation: "2,600M",
+    pdfUrl: "/Hack_in_Hills_26_Problem_Statements.pdf",
     problem:
       "Build a robot that uses an AI vision model to understand its surroundings, identify objects and people, and autonomously navigate toward a given objective while avoiding obstacles.",
     explore: [
@@ -223,6 +227,7 @@ export const TRACKS: readonly Track[] = [
       "Financial products that only work because settlement is fast and onchain.",
     stack: ["Solidity", "DeFi", "Market Design", "Onchain Data"],
     elevation: "2,900M",
+    pdfUrl: "/Hack_in_Hills_26_Problem_Statements.pdf",
     problem:
       "Build a fully onchain financial product that leverages fast blockchain settlement to create innovative and transparent trading or lending markets without relying on centralized offchain infrastructure.",
     explore: [
@@ -245,5 +250,49 @@ export const TRACKS: readonly Track[] = [
     ],
     challenge:
       "Create a functional prototype that demonstrates how blockchain-native infrastructure can enable financial products that are difficult or inefficient to build using traditional systems.",
+  },
+  {
+    id: "04",
+    title: "Securing Adversarial AI Safety Testing Infrastructure",
+    slug: "bayora-ai-safety",
+    tagline:
+      "Isolate red-team, blue-team, and LLM workloads in a shared evaluation sandbox.",
+    stack: ["Systems Security", "Container Isolation", "Infrastructure", "Audit"],
+    elevation: "3,100M",
+    pdfUrl: "/Hack_in_Hills_26_Problem_Statements.pdf",
+    problem:
+      "Bayora is an AI safety validation platform where red teams conduct adversarial testing, blue teams build defenses, and a client LLM runs evaluations — all in a shared Docker sandbox. Red-team payloads must stay hidden from blue-team, defensive logic must not leak to red-team, and the LLM must remain uncontaminated. How do you build an environment where adversaries, defenders, and the model operate simultaneously without exposing their sensitive state or creating exploitable side channels?",
+    explore: [
+      {
+        title: "Container & Sandbox Isolation",
+        body: "Stronger execution boundaries using Linux namespaces, seccomp, cgroup partitioning, and hardened runtimes.",
+      },
+      {
+        title: "Network Segmentation",
+        body: "Micro-segmented topologies where communication is policy-enforced and strictly controlled.",
+      },
+      {
+        title: "Access Control & Secrets",
+        body: "Capability-based or attribute-based models restricting access to payloads, logic, and weights.",
+      },
+      {
+        title: "Audit Trails & Provenance",
+        body: "Tamper-evident and cryptographically verifiable records for independent reconstruction.",
+      },
+      {
+        title: "Resource Governance",
+        body: "Prevent CPU, memory, I/O, and timing effects from distorting results or leaking information.",
+      },
+      {
+        title: "LLM-Specific Threats",
+        body: "Address shared KV-cache side channels, prompt leakage, model output isolation, and inference-time exfiltration.",
+      },
+      {
+        title: "Observability & Anomaly Detection",
+        body: "Detect policy violations without turning monitoring into an information-leakage channel.",
+      },
+    ],
+    challenge:
+      "Build a working proof of concept for secure adversarial AI testing infrastructure that demonstrates meaningful isolation, prevents cross-team information leakage, preserves auditability, and clearly communicates security guarantees and residual risks.",
   },
 ] as const;

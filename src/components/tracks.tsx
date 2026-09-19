@@ -207,6 +207,25 @@ function Briefing({ track }: { track: Track }) {
   return (
     <div className="pb-14 md:pb-16 md:pl-[4.5rem]">
       <div className="flex flex-col gap-11">
+        {/* Download PDF Button */}
+        {track.pdfUrl && (
+          <div className="flex gap-3 py-2">
+            <a
+              href={track.pdfUrl}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-5 py-3 border border-[#FF512F]/30 hover:border-[#FF512F]/60 text-[#FF512F] font-sans text-[13px] font-light uppercase tracking-[0.12em] transition-all duration-300 cursor-none"
+              data-cursor-text="DOWNLOAD"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="transition-transform duration-300 group-hover:translate-y-0.5">
+                <path d="M12 2v11M6 13l6 6 6-6M3 21h18" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Get PDF</span>
+            </a>
+          </div>
+        )}
+
         <section>
           <SectionLabel>Objective</SectionLabel>
           <p className="font-sans text-lg md:text-[1.45rem] font-light leading-[1.45] text-[#1A1A1A] max-w-4xl">
