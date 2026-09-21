@@ -13,8 +13,8 @@ type Sponsor = {
 };
 
 const SPONSORS: Sponsor[] = [
-  { id: "binance", name: "Binance", logo: "/sponsors/binance.webp",  },
-  { id: "shardeum", name: "Shardeum", logo: "/sponsors/shardeum.webp" ,  },
+ 
+ 
   { id: "mexc", name: "MEXC", logo: "/sponsors/mexc.webp",  },
   { id: "coindcx", name: "CoinDCX", logo: "/sponsors/coindcx.webp", },
   { id: "metamask", name: "MetaMask", logo: "/sponsors/metamask.webp",},
@@ -25,7 +25,6 @@ const SPONSORS: Sponsor[] = [
     {id:"thore", name: "Thore", logo: "/sponsors/thore.webp", },
     {id:"miro", name: "Miro", logo: "/sponsors/miro.webp", },
     {id:"moveo", name: "Move", logo: "/sponsors/move.webp", },
-    {id:"claude", name: "Claude", logo: "/sponsors/claude.webp", },
     {id:"sentient", name: "Sentient", logo: "/sponsors/sentient.webp", },
     {id:"metaspace", name: "Metaspace", logo: "/sponsors/metaspace.webp", },
     {id:"redbull", name: "Red Bull", logo: "/sponsors/redbull.webp", },
