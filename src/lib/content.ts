@@ -75,20 +75,20 @@ export const PRIZE = {
 } as const;
 
 /**
- * The four rounds, in the order they run. `window` is the submission window as published;
- * `elevation` is the site's own altitude metaphor for how far up the climb each round sits.
+ * The schedule, in the order it runs, as published on the event page. `window` is the
+ * published date range; `elevation` is the site's own altitude metaphor for how far up the
+ * climb each stage sits. `image` is optional; the timeline renders text-only without it.
  */
 export const STAGES = [
   {
     id: "01",
-    title: "Idea & PPT Submission",
-    window: "10 SEP 2026 — 20 OCT 2026",
-    opens: "10 Sep 26, 11:59 PM IST",
-    closes: "20 Oct 26, 11:59 PM IST",
+    label: "Round 1",
+    title: "Registration + Idea & PPT Submission",
+    window: "10 SEP — 10 OCT 2026",
     elevation: "1,900M",
     status: "Live",
     summary:
-      "Submit your idea as a deck using the official template. Cover the problem statement, proposed solution, innovation, target users, tech stack, expected impact and implementation approach.",
+      "Register and submit your idea as a deck using the official template. Cover the problem statement, proposed solution, innovation, target users, tech stack, expected impact and implementation approach.",
     detail: "Open to all registered teams.",
     link: {
       label: "PPT Template",
@@ -99,38 +99,59 @@ export const STAGES = [
   },
   {
     id: "02",
-    title: "Prototype Round",
-    window: "01 OCT 2026 — 20 OCT 2026",
-    opens: "01 Oct 26, 01:09 AM IST",
-    closes: "20 Oct 26, 01:09 AM IST",
-    elevation: "2,300M",
+    label: "Round 1",
+    title: "Shortlisting",
+    window: "11 — 12 OCT 2026",
+    elevation: "2,100M",
     summary:
-      "Build a working prototype or MVP that demonstrates core functionality, technical implementation, usability and real-world impact.",
-    detail:
-      "Submit the prototype, a demo video, your repository link and any supporting documentation. All participating teams are eligible.",
-    image: "/timeline-2.webp",
+      "Every submitted deck is reviewed against the brief. Teams that clear the bar move on to build.",
+    detail: "Shortlisted teams are notified by email.",
+    image: "/timeline-5.webp",
     align: "right",
   },
   {
     id: "03",
-    title: "Social Pitch & Outreach",
-    window: "22 OCT 2026 — 25 OCT 2026",
-    opens: "22 Oct 26, 12:00 AM IST",
-    closes: "25 Oct 26, 11:59 PM IST",
-    elevation: "2,700M",
+    label: "Round 2A",
+    title: "Prototype Development",
+    window: "13 — 19 OCT 2026",
+    elevation: "2,300M",
     summary:
-      "Shortlisted teams take the pitch public: a LinkedIn post presenting the idea, an Instagram Reel on why your team is coming, and a short video of the working prototype with its repository link.",
+      "Build a working prototype or MVP that demonstrates core functionality, technical implementation, usability and real-world impact.",
     detail:
-      "Tag Eren, BuilderBase, Nexido and Web3 India in the post and the Reel. Submit all links through the designated form. The top 10 teams advance to the grand finale.",
-    image: "/timeline-3.webp",
+      "Submit the prototype, a demo video, your repository link and any supporting documentation.",
+    image: "/timeline-2.webp",
     align: "left",
   },
   {
     id: "04",
+    label: "Round 2B",
+    title: "Social Pitch & Outreach",
+    window: "20 — 25 OCT 2026",
+    elevation: "2,600M",
+    summary:
+      "Take the pitch public: a LinkedIn post presenting the idea, an Instagram Reel on why your team is coming, and a short video of the working prototype with its repository link.",
+    detail:
+      "Tag Eren, BuilderBase, Nexido and Web3 India in the post and the Reel. Submit all links through the designated form.",
+    image: "/timeline-3.webp",
+    align: "right",
+  },
+  {
+    id: "05",
+    label: "Finalists",
+    title: "Finalists Announcement — Top 10",
+    window: "30 OCT 2026",
+    elevation: "2,900M",
+    summary:
+      "The ten strongest teams are announced and invited to the grand finale in Manali.",
+    detail: "Selection weighs the prototype and the social pitch together.",
+    image: "/timeline-6.webp",
+    align: "left",
+  },
+  {
+    id: "06",
+    label: "Round 3",
     title: "Grand Finale",
     window: "20 — 21 NOV 2026 · MANALI",
-    opens: "20 Nov 26, 10:00 AM IST",
-    closes: "21 Nov 26, 10:01 AM IST",
     elevation: "3,200M",
     summary:
       "The 24+ hour offline finale. Finalists build, refine and present in front of mentors and judges at altitude.",
@@ -158,7 +179,7 @@ export const FAQS = [
     id: "03",
     question: "HOW DOES SELECTION WORK?",
     answer:
-      "Four rounds. Idea and PPT submission, then a prototype round open to all participating teams, then a social pitch and outreach round for shortlisted teams. The top 10 teams travel to Manali for the grand finale.",
+      "Registration and idea/PPT submission run 10 Sep – 10 Oct, with shortlisting on 11–12 Oct. Shortlisted teams build a prototype (13–19 Oct) and run a social pitch (20–25 Oct). The top 10 are announced on 30 Oct and travel to Manali for the grand finale on 20–21 Nov.",
   },
   {
     id: "04",

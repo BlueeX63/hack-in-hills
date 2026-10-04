@@ -145,10 +145,10 @@ export function About() {
                   1,900M
                 </div>
                 <h3 className="font-display text-3xl font-bold uppercase tracking-tight mb-4">
-                  Four Rounds To The Summit
+                  Six Stages To The Summit
                 </h3>
                 <p className="font-sans text-base text-[#F4F1EA]/70 leading-relaxed font-light">
-                  Idea and deck, then a prototype round open to every team, then a public pitch. Ten teams make it to Manali.
+                  Idea and deck, shortlisting, a prototype, then a public pitch. Ten teams make it to Manali on 20–21 November.
                 </p>
               </div>
             </div>

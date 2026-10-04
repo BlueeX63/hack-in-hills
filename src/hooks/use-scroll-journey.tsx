@@ -57,22 +57,28 @@ export function ScrollJourneyProvider({ children }: { children: React.ReactNode 
   // so the progress stayed pinned near zero for the whole page. A ResizeObserver on the
   // body catches that growth.
   useEffect(() => {
+    // scrollHeight forces layout, so it is only re-read when the page size changes, never
+    // on a scroll frame.
+    let max = 0;
+    const measure = () => {
+      max = document.documentElement.scrollHeight - window.innerHeight;
+      update();
+    };
     const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
       scrollYProgress.set(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
     };
 
-    update();
+    measure();
 
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
+    window.addEventListener("resize", measure, { passive: true });
 
-    const observer = new ResizeObserver(update);
+    const observer = new ResizeObserver(measure);
     observer.observe(document.body);
 
     return () => {
       window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", measure);
       observer.disconnect();
     };
   }, [scrollYProgress]);

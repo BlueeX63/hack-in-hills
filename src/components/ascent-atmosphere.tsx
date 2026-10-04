@@ -19,7 +19,8 @@ import { useScrollJourney } from "@/hooks/use-scroll-journey";
  * CSS. Transforms and opacity only, so it stays on the compositor.
  */
 
-const FLAKE_COUNT = 90;
+const FLAKE_COUNT = 36;
+const METEOR_COUNT = 5;
 
 /**
  * Skyline profiles, back to front. Irregular on purpose — evenly spaced peaks of equal
@@ -78,8 +79,15 @@ export function AscentAtmosphere() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   // One DOM write per frame. Everything else reacts in CSS.
+  // Quantised to 1%: every flake/ridge derives its opacity from this variable, so each write
+  // restyles the whole overlay. 100 steps is visually identical and cuts those recalcs by
+  // an order of magnitude while a spring is settling.
+  const lastStorm = useRef(-1);
   useMotionValueEvent(smooth, "change", (v) => {
-    rootRef.current?.style.setProperty("--storm", v.toFixed(4));
+    const q = Math.round(v * 100) / 100;
+    if (q === lastStorm.current) return;
+    lastStorm.current = q;
+    rootRef.current?.style.setProperty("--storm", String(q));
   });
 
   // The range rises into frame as the climb progresses. Far ridges move least.
@@ -103,8 +111,10 @@ export function AscentAtmosphere() {
 
   if (!resolved || budget.snowParticles === 0) return null;
 
-  // Lower tiers keep the vignette and contours but carry far fewer flakes.
-  const flakeBudget = budget.snowParticles >= 40 ? FLAKE_COUNT : Math.round(FLAKE_COUNT * 0.35);
+  // Lower tiers keep the vignette and contours but carry far fewer flakes, and only the
+  // top tier gets the meteor shower.
+  const flakeBudget = Math.min(FLAKE_COUNT, budget.snowParticles);
+  const showMeteors = budget.snowParticles >= 40;
 
   return (
     <div
@@ -204,11 +214,12 @@ export function AscentAtmosphere() {
       {/* Meteors over the range, only in the final push to the summit. They all fall the
           same way, the way a real shower radiates from one point — random directions read
           as noise. */}
+      {showMeteors && (
       <div
         className="absolute inset-0"
         style={{ opacity: "clamp(0, calc((var(--storm) - 0.55) * 3.2), 1)" }}
       >
-        {Array.from({ length: 12 }, (_, i) => {
+        {Array.from({ length: METEOR_COUNT }, (_, i) => {
           // Steeper than 90deg, so forward is down and to the left.
           const angle = 104 + rand(i + 31) * 22;
           const length = 14 + rand(i + 52) * 22;
@@ -240,6 +251,7 @@ export function AscentAtmosphere() {
           );
         })}
       </div>
+      )}
     </div>
   );
 }

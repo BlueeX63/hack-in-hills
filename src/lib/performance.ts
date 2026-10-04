@@ -46,7 +46,7 @@ export const BUDGETS: Record<PerfTier, Budget> = {
     revealAnimations: true,
   },
   medium: {
-    snowParticles: 14,
+    snowParticles: 12,
     filmGrain: true,
     parallax: true,
     blendModes: false,
@@ -128,7 +128,9 @@ export function detectTier(): PerfTier {
   if (cores <= 2 || memory <= 2) return "low";
 
   const coarse = window.matchMedia("(pointer: coarse)").matches;
-  if (cores <= 4 || memory <= 4 || coarse) return "medium";
+  // The full build (blend modes, parallax on every image, meteors) needs a real GPU and
+  // headroom; 5-7 core laptops with integrated graphics land on medium.
+  if (cores < 8 || memory < 8 || coarse) return "medium";
 
   return "high";
 }

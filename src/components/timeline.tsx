@@ -31,7 +31,7 @@ export function Timeline() {
         {/* Header */}
         <div className="text-center mb-32">
           <span className="font-mono text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-4 block">
-            Elevation Profile · Four Rounds
+            Elevation Profile · Six Stages
           </span>
           <VelocitySkew intensity={1.3}>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter">
@@ -85,9 +85,9 @@ export function Timeline() {
                 >
                   {isLeft ? (
                     <MilestoneText milestone={milestone} align="right" />
-                  ) : (
+                  ) : "image" in milestone ? (
                     <MilestoneImage milestone={milestone} />
-                  )}
+                  ) : null}
                 </div>
 
                 {/* RIGHT SIDE (desktop). */}
@@ -98,9 +98,9 @@ export function Timeline() {
                 >
                   {!isLeft ? (
                     <MilestoneText milestone={milestone} align="left" />
-                  ) : (
+                  ) : "image" in milestone ? (
                     <MilestoneImage milestone={milestone} />
-                  )}
+                  ) : null}
                 </div>
               </div>
             );
@@ -133,7 +133,7 @@ function MilestoneText({
       transition={{ duration: 0.6, delay: 0.1 }}
       className="mt-6 md:mt-0"
       data-cursor="peak"
-      data-cursor-text={`ROUND ${milestone.id}`}
+      data-cursor-text={milestone.label.toUpperCase()}
       data-cursor-alt={milestone.elevation}
     >
       {/* Alignment is a class, not an inline style: mobile stacks left-aligned regardless
@@ -143,7 +143,7 @@ function MilestoneText({
           align === "right" ? "md:justify-end" : "md:justify-start"
         }`}
       >
-        <span>Round {milestone.id}</span>
+        <span>{milestone.label}</span>
         {"status" in milestone && milestone.status ? (
           <span className="inline-flex items-center gap-1.5 text-[#1A1A1A]/70">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF512F] animate-pulse" />
@@ -183,7 +183,7 @@ function MilestoneText({
   );
 }
 
-function MilestoneImage({ milestone }: { milestone: Stage }) {
+function MilestoneImage({ milestone }: { milestone: Stage & { image: string } }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
