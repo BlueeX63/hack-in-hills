@@ -10,6 +10,8 @@ type Sponsor = {
   logo: string;
   /** Some logos ship on a dark/branded background; render those on a dark tile so they don't look clipped. */
   dark?: boolean;
+  /** Logo ships on an opaque white background; multiply-blend so the white drops into the tile colour. */
+  multiply?: boolean;
 };
 
 const SPONSORS: Sponsor[] = [
@@ -17,6 +19,7 @@ const SPONSORS: Sponsor[] = [
   { id: "qwen", name: "Qwen", logo: "/sponsors/qwen.webp" },
   { id: "n8n", name: "n8n", logo: "/sponsors/n8n.webp" },
   { id: "kaze", name: "Kaze AI", logo: "/sponsors/kaze.webp" },
+  { id: "insights", name: "Insights", logo: "/sponsors/insights.webp" },
   { id: "mexc", name: "MEXC", logo: "/sponsors/mexc.webp",  },
   { id: "coindcx", name: "CoinDCX", logo: "/sponsors/coindcx.webp", },
   { id: "metamask", name: "MetaMask", logo: "/sponsors/metamask.webp",},
@@ -82,7 +85,7 @@ export function Sponsors() {
                   alt={sponsor.name}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-contain"
+                  className={`object-contain ${sponsor.multiply ? "mix-blend-multiply" : ""}`}
                 />
               </div>
             </motion.div>
