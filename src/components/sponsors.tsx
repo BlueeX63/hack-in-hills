@@ -84,6 +84,7 @@ export function Sponsors() {
                   src={sponsor.logo}
                   alt={sponsor.name}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   className={`object-contain ${sponsor.multiply ? "mix-blend-multiply" : ""}`}
                 />
