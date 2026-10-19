@@ -15,7 +15,7 @@ type Sponsor = {
 };
 
 const SPONSORS: Sponsor[] = [
-  { id: "tinyfish", name: "TinyFish", logo: "/sponsors/tinyfish.webp" },
+  { id: "tinyfish", name: "TinyFish", logo: "/sponsors/tinyfish.svg" },
   { id: "qwen", name: "Qwen", logo: "/sponsors/qwen.webp" },
   { id: "n8n", name: "n8n", logo: "/sponsors/n8n.webp" },
   { id: "kaze", name: "Kaze AI", logo: "/sponsors/kaze.webp" },
